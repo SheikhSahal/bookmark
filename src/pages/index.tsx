@@ -18,10 +18,10 @@ export default function Home(){
   const {error, loading, data} = useQuery(Bookmarks);
 
   if(error)
-      return <h3>{error}</h3>
+    return <h3>{error}</h3>
   if(loading)
     return <h3>loading...</h3>
-    
+
   console.log(data);
 
   return <h1>Hellow world</h1>
