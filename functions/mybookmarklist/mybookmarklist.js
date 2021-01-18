@@ -48,6 +48,7 @@ const resolvers = {
   },
   Mutation:{
     addBookmark:(_, {title,url}) =>{
+      console.log("=========================");
         console.log(title,url);
         return{
           id: 1,

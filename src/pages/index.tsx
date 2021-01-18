@@ -13,9 +13,9 @@ const Bookmarks = gql`
 `;
 
 
-const ADD_BOOKMARKS = `gql
-      mutation addBookmark($url:String!, $title: $String!){
-        addBookmar(url : $url, title: $title){
+const ADD_BOOKMARKS = gql`
+      mutation addBookmar($url:String!, $title: String!){
+        addBookmark(url : $url, title: $title){
           id
         }
       }
@@ -26,11 +26,21 @@ export default function Home() {
   let titleField;
   let titleUrl;
 
+
+  const { error, loading, data } = useQuery(Bookmarks);
+
+  const [addBookmark] = useMutation(ADD_BOOKMARKS);
+
   const handleSubmit = () => {
     console.log(titleField.value)
     console.log(titleUrl.value)
+    addBookmark({
+      variables:{
+        url: titleUrl.value,
+        title:titleField.value
+      }
+    })
   }
-  const { error, loading, data } = useQuery(Bookmarks);
 
   console.log(data);
 
