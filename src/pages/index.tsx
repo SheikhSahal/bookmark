@@ -1,30 +1,60 @@
-import React,{useEffect, useState} from "react"
-import {useQuery, useMutation} from '@apollo/client';
+import React, { useEffect, useState } from "react"
+import { useQuery, useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
 
 const Bookmarks = gql`
 {
-  allAuthors{
+  bookmarks{
     id
-    name
+    title
+    url
   }
 }
 `;
 
 
+const ADD_BOOKMARKS = `gql
+      mutation addBookmark($url:String!, $title: $String!){
+        addBookmar(url : $url, title: $title){
+          id
+        }
+      }
+`;
 
-export default function Home(){
+export default function Home() {
 
-  const {error, loading, data} = useQuery(Bookmarks);
+  let titleField;
+  let titleUrl;
 
-  if(error)
-    return <h3>{error}</h3>
-  if(loading)
-    return <h3>loading...</h3>
+  const handleSubmit = () => {
+    console.log(titleField.value)
+    console.log(titleUrl.value)
+  }
+  const { error, loading, data } = useQuery(Bookmarks);
 
   console.log(data);
 
-  return <h1>Hellow world</h1>
+  if (error)
+    return <h3>{error}</h3>
+  if (loading)
+    return <h3>loading...</h3>
+
+
+
+  return <div>
+    <label>
+      Bookmark title: <br />
+      <input type="text"  ref={node => titleField = node}/>
+    </label>
+    <br />
+    <label>
+      Bookmark Url: <br />
+      <input type="text" ref={node => titleUrl = node}/>
+    </label>
+
+    <br />
+    <button onClick={handleSubmit}>add Bookmark</button>
+  </div>
 }
 
 

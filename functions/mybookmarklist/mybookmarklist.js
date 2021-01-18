@@ -16,11 +16,11 @@ const typeDefs = gql`
   }
 `
 
-const authors = [
-  { id: 1, name: 'Terry Pratchett', married: false },
-  { id: 2, name: 'Stephen King', married: true },
-  { id: 3, name: 'JK Rowling', married: false },
-]
+// const authors = [
+//   { id: 1, name: 'Terry Pratchett', married: false },
+//   { id: 2, name: 'Stephen King', married: true },
+//   { id: 3, name: 'JK Rowling', married: false },
+// ]
 
 const resolvers = {
   Query: {
@@ -35,15 +35,15 @@ const resolvers = {
         )
         console.log(result.data)
 
-        return{
-          id: 1,
-          title:"Temp title" ,
-          url: "Temp Url"
-        }
+        // return[{
+        //   id: 1,
+        //   title:"Temp title" ,
+        //   url: "Temp Url"
+        // }]
       }catch(err){
         console.log(err);
       }
-      return authors;
+      // return authors;
     } ,
   },
   Mutation:{
